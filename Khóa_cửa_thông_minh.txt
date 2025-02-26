@@ -1,0 +1,110 @@
+#include <Keypad.h> 
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+const byte ROWS_NUM = 4;
+const byte COLS_NUM = 4; 
+char keys[ROWS_NUM][COLS_NUM] = {
+  {'1','2','3','A'},  
+  {'4','5','6','B'},  
+  {'7','8','9','C'},  
+  {'*','0','#','D'}
+};
+ byte pin_rows[ROWS_NUM] = { 9, 8, 7, 6 };
+
+byte pin_column[COLS_NUM] = { 5, 4, 3, 2}; 
+
+Keypad keypad = Keypad(makeKeymap(keys), pin_rows, pin_column, ROWS_NUM, COLS_NUM);
+ 
+ LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+const int buzzerPin = 10; 
+const int lockPin = 11; 
+
+int password[3] = {1, 2, 3};
+int enterPassword[3];
+int index = 0;
+int maxcount = 3;
+int count = 0;
+
+void setup(){
+  lcd.init();
+  lcd.backlight();
+  pinMode(10,OUTPUT);
+  lcd.backlight();
+ pinMode(19, OUTPUT);
+ pinMode(11, OUTPUT);
+ digitalWrite(11, LOW);
+ 
+ lcd.begin(16, 2);
+ lcd.setCursor(3, 9);
+ lcd.print(" NHAP MAT KHAU ");
+ delay(1000);
+ lcd.clear();
+ Serial.begin(9600);
+ }
+bool checkPassword() {
+  for (int i= 0; i < 3; i++) {
+   if (enterPassword[i] != password[i]) {
+     return false;}
+ }
+ return true;
+}
+void loop() {
+ char key = keypad.getKey();
+ if (key) {
+   Serial.println(key);}
+
+
+  if (key != NO_KEY) {
+   lcd.setCursor(index + 7, 0);
+   lcd.print(key);
+   enterPassword[index] = key - '0';
+   index++; 
+   if (index == 3) {
+
+     if (checkPassword()) {
+       lcd.setCursor(4, 0);
+       lcd.print(" MAT KHAU DUNG "); 
+       delay(1000);
+       lcd.clear();
+
+       digitalWrite(lockPin, HIGH);
+       delay(5000);
+       digitalWrite(lockPin, LOW);
+       delay(2000);
+       lcd.clear();
+       lcd.setCursor(2, 0);
+       lcd.print(" NHAP MAT KHAU ");
+       delay(1000);
+       lcd.clear();
+       index = 0;
+       count = 0;
+      } else {
+       count++;
+       lcd.clear();
+       lcd.setCursor(3, 0);
+       lcd.print(" SAI MAT KHAU ");
+       delay(1000);
+       lcd.clear();
+       lcd.setCursor(2, 0);
+       lcd.print(" MOI NHAP LAI ");
+       delay(1000);
+       lcd.clear();
+       index = 0; 
+
+
+       if (count)
+       digitalWrite(lockPin, LOW);
+      if (count >= maxcount) {
+       lcd.setCursor(4,0);
+       lcd.print ("HET LUOT NHAP");
+       delay(1000);
+       digitalWrite(buzzerPin, HIGH);
+       delay(5000);
+       digitalWrite(buzzerPin, LOW);
+       lcd.clear();
+       digitalWrite(lockPin, LOW);
+       delay(2000); } }}}}
+
+
