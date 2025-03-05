@@ -23,8 +23,6 @@ Dự án **Khóa Cửa Thông Minh** sử dụng **Arduino** là một hệ th�
 ### Phần Cứng
 
 - **Vi điều khiển:** Arduino Uno hoặc tương đương
-- **Cảm biến:** Mô-đun cảm biến vân tay (nếu sử dụng)
-- **RFID:** Mô-đun RFID RC522 (nếu sử dụng thẻ từ)
 - **Bàn phím:** Bàn phím ma trận 4x4 (nếu sử dụng mật khẩu)
 - **Màn hình LCD:** LCD 16x2 (tùy chọn)
 - **Khóa điện tử:** Relay điều khiển khóa cửa
@@ -33,8 +31,6 @@ Dự án **Khóa Cửa Thông Minh** sử dụng **Arduino** là một hệ th�
 ### Phần Mềm
 
 - [Arduino IDE](https://www.arduino.cc/en/software)
-- [Thư viện MFRC522](https://github.com/miguelbalboa/rfid) (dành cho RFID)
-- [Thư viện Adafruit Fingerprint Sensor](https://github.com/adafruit/Adafruit-Fingerprint-Sensor-Library) (dành cho cảm biến vân tay)
 
 ---
 
@@ -66,14 +62,11 @@ Dự án **Khóa Cửa Thông Minh** sử dụng **Arduino** là một hệ th�
 
 ## 💡 Hướng Dẫn Sử Dụng
 
-1. **Kết nối phần cứng:** Xây dựng mạch theo sơ đồ trong thư mục `Schematics/`.
+1. **Kết nối phần cứng:** Xây dựng mạch theo sơ đồ trong thư mục docx
 2. **Khởi động hệ thống:** Cấp nguồn cho Arduino, hệ thống sẽ sẵn sàng hoạt động.
 3. **Mở khóa cửa:**
    - Nhập mật khẩu trên bàn phím.
-   - Quét thẻ RFID nếu sử dụng mô-đun RFID.
-   - Sử dụng cảm biến vân tay nếu có.
 4. **Quản lý người dùng:**
-   - Đăng ký hoặc xóa người dùng RFID/vân tay qua giao diện Arduino (nếu hỗ trợ).
    - Thay đổi mật khẩu trực tiếp trên hệ thống.
 
 ---
@@ -81,7 +74,7 @@ Dự án **Khóa Cửa Thông Minh** sử dụng **Arduino** là một hệ th�
 ## 🌟 Tính Năng
 
 - ✅ Hỗ trợ mở khóa bằng mật khẩu, RFID và vân tay.
-- ✅ Hiển thị trạng thái trên màn hình LCD (nếu có).
+- ✅ Hiển thị trạng thái trên màn hình LCD.
 - ✅ Cảnh báo khi nhập sai mật khẩu/quét sai nhiều lần.
 - ✅ Dễ dàng mở rộng và nâng cấp.
 
