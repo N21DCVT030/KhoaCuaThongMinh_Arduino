@@ -73,9 +73,9 @@ Dự án **Khóa Cửa Thông Minh** sử dụng **Arduino** là một hệ th�
 
 ## 🌟 Tính Năng
 
-- ✅ Hỗ trợ mở khóa bằng mật khẩu, RFID và vân tay.
+- ✅ Hỗ trợ mở khóa bằng mật khẩu.
 - ✅ Hiển thị trạng thái trên màn hình LCD.
-- ✅ Cảnh báo khi nhập sai mật khẩu/quét sai nhiều lần.
+- ✅ Cảnh báo khi nhập sai mật khẩu nhiều lần.
 - ✅ Dễ dàng mở rộng và nâng cấp.
 
 ---
